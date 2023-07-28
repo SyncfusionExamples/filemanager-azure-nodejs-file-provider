@@ -21,7 +21,7 @@ const containerName = 'files';
 const directoryName = 'Files';
 const endSlash = '/';
 const connectionString = `DefaultEndpointsProtocol=https;AccountName=${accountName};AccountKey=${accountKey};EndpointSuffix=${EndpointSuffix}`;
-//For store the file in bufffer objects
+//For store the file in buffer objects
 const multerConfig = {
     storage: memoryStorage()
 };
@@ -176,7 +176,7 @@ async function getDetails(req, res) {
                     const blobClient = containerClient.getBlobClient(directoryName + req.body.path + item);
                     const properties = await blobClient.getProperties();
                     names.push(basename(blobClient.name));
-                    // Replace the blobClient.name to get the common loaction for more thatn one files
+                    // Replace the blobClient.name to get the common location for more thatn one files
                     if (req.body.names.length > 1) {
                         location = blobClient.name.replace("/" + item, "");
                     } else {
