@@ -1,4 +1,4 @@
-# filemanager-azure-nodejs-file-provider
+# FileManager-azure-NodeJs-file-provider
 
 This repository contains the node JS Azure blob storage file system providers for the Syncfusion File Manager component.
 
@@ -6,16 +6,16 @@ This repository contains the node JS Azure blob storage file system providers fo
 
 The Node.js file provider module allows you to work with the azure blob storage. It also provides the methods for performing various file actions like creating a new folder, renaming files, and deleting files.
 
-NodeJs File Provider Serves the file system providers support for the  FileManager component with the NodeJS.
+NodeJs File Provider serves the file system providers support for the  File Manager component with the NodeJs.
 
-The following actions can be performed with NodeJS file system provider.
+The following actions can be performed with NodeJs file system provider.
 
 | **Actions** | **Description** |
 | --- | --- |
-| Read      | Reads the files from NodeJS file system. |
+| Read      | Reads the files from NodeJs file system. |
 | Details   | Gets the file's details which consists of Type, Size, Location and Modified date. |
-| Download  | Downloads the selected file or folder from NodeJS file system. |
-| Upload    | Uploads a file in NodeJS file system. It accepts uploaded media with the following characteristics: <ul><li>Maximum file size:  30MB</li><li>Accepted Media MIME types: `*/*` </li></ul> |
+| Download  | Downloads the selected file or folder from NodeJs file system. |
+| Upload    | Uploads a file in NodeJs file system. It accepts uploaded media with the following characteristics: <ul><li>Maximum file size:  30MB</li><li>Accepted Media MIME types: `*/*` </li></ul> |
 | Create    | Creates a New folder. |
 | Delete    | Deletes a folder or file. |
 | Copy      | Copys the selected files or folders from target. |
@@ -25,13 +25,13 @@ The following actions can be performed with NodeJS file system provider.
 
 ## How to configure a web service
 
-Follow the below set of commands to configure the nodeJS file system providers. 
+Follow the below set of commands to configure the NodeJs file system providers. 
 
 - To install ej2-filemanager-node-filesystem package, use the following command.
 
 ```sh
  
-  npm install @syncfusion/filemanager-azure-nodejs-file-provider
+  npm install @syncfusion/filemanager-azure-NodeJs-file-provider
 
 ```
 
@@ -43,7 +43,7 @@ Follow the below set of commands to configure the nodeJS file system providers.
 
 ```
 
-### start the service
+### Start the service
 
 To start the service use this command,
 
@@ -53,7 +53,7 @@ node filesystem-server.js
 
 ## File Manager AjaxSettings
 
-To access the basic actions like Read, Delete, Copy, Move, Rename, Search, and Get Details of File Manager using NodeJS file system service, just map the following code snippet in the Ajaxsettings property of File Manager.
+To access the basic actions like Read, Delete, Copy, Move, Rename, Search, and Get Details of File Manager using NodeJs file system service, just map the following code snippet in the Ajaxsettings property of File Manager.
 
 Here, the `hostUrl` will be your locally hosted port number.
 
@@ -100,7 +100,7 @@ To perform image preview support in the File Manager component, initialize the `
         },
 ```
 
-The FileManager will be rendered as follows.
+The File Manager will be rendered as follows.
 
 ![File Manager](https://ej2.syncfusion.com/products/images/file-manager/readme.gif)
 
