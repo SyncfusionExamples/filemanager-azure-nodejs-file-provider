@@ -104,7 +104,7 @@ async function deleteFoldersAndFiles(req, res) {
                 for await (const blob of containerClient.listBlobsFlat({ prefix: directoryName + req.body.path + req.body.names[i] + endSlash })) {
                     const fileData = {
                         dateCreated: blob.properties.createdOn,
-                        dateModified: blob.propertieslastModified,
+                        dateModified: blob.properties.lastModified,
                         filterPath: req.body.data[i].filterPath,
                         hasChild: await hasChildren(blob.name),
                         isFile: true,
@@ -176,7 +176,7 @@ async function getDetails(req, res) {
                     const blobClient = containerClient.getBlobClient(directoryName + req.body.path + item);
                     const properties = await blobClient.getProperties();
                     names.push(basename(blobClient.name));
-                    // Replace the blobClient.name to get the common location for more thatn one files
+                    // Replace the blobClient.name to get the common location for more than one files
                     if (req.body.names.length > 1) {
                         location = blobClient.name.replace("/" + item, "");
                     } else {
@@ -314,7 +314,7 @@ async function rename(req, res) {
     }
     else {
         var isExist = false;
-        // Check the existance of directory
+        // Check the existence of directory
         for await (const { } of containerClient.listBlobsFlat({ prefix: directoryName + req.body.path + req.body.newName + endSlash })) {
             isExist = true;
             break;
@@ -365,9 +365,9 @@ async function copyAndMoveFiles(req, res) {
     for (const item of req.body.data) {
         if (item.type == "Directory") {
             var isExist = false;
-            // Here prevented the checking of existance, if the request is rename.
+            // Here prevented the checking of existence, if the request is rename.
             if (!isRename) {
-                // Check the existance of the target directory, using the blob is available or not in that path.
+                // Check the existence of the target directory, using the blob is available or not in that path.
                 // Here the prefix is "Files/Document/". that end '/' added for get the exact directory.
                 // For example If this '/' is not added it wil take the "Files/Document" and "Files/Documents". 
                 for await (const { } of containerClient.listBlobsFlat({ prefix: directoryName + req.body.targetPath + item.name + endSlash })) {
@@ -394,12 +394,12 @@ async function copyAndMoveFiles(req, res) {
                     var destinationBlobClient = containerClient.getBlockBlobClient(directoryName + req.body.targetPath + targetBlob);
                     if (isRename) {
                         // Change the target path if get rename request.
-                        var rootTatgetPath = targetBlob.substring(0, targetBlob.indexOf("/"));
+                        var rootTargetPath = targetBlob.substring(0, targetBlob.indexOf("/"));
                         var targetSubPath = targetBlob.substring(targetBlob.indexOf("/"));
                         var newTargetPath;
                         var counter = 1;
                         while (true) {
-                            newTargetPath = rootTatgetPath + "(" + counter + ")" + targetSubPath;
+                            newTargetPath = rootTargetPath + "(" + counter + ")" + targetSubPath;
                             destinationBlobClient = containerClient.getBlockBlobClient(directoryName + req.body.targetPath + newTargetPath);
                             if (!await destinationBlobClient.exists()) {
                                 newDirectoryName = item.name + "(" + counter + ")";
@@ -412,7 +412,7 @@ async function copyAndMoveFiles(req, res) {
                     } else {
                         await destinationBlobClient.beginCopyFromURL(sourceBlobClient.url);
                     }
-                    // Delete the Source blob if the sction is "move".
+                    // Delete the Source blob if the action is "move".
                     if (req.body.action == "move") {
                         await sourceBlobClient.delete();
                     }
@@ -492,7 +492,6 @@ async function copyAndMoveFiles(req, res) {
 
 async function searchFiles(req, res) {
     var currentPath = req.body.path;
-    console.log(req.body.searchString);
     var searchString = req.body.searchString.replace(/\*/g, "");
 
     const directories = [];
@@ -517,7 +516,6 @@ async function searchFiles(req, res) {
             } else {
                 if (basename(item.name).toLowerCase().includes(searchString.toLowerCase())) {
                     const filterPath = dirname(item.name).substring(directoryName.length) + endSlash;
-                    console.log(filterPath);
                     entry = {};
                     entry.name = basename(item.name);
                     entry.type = extname(item.name);
@@ -617,7 +615,6 @@ app.post('/Download', async function (req, res) {
         // Stream the file directly to the response
         downloadResponse.readableStreamBody.pipe(res);
     } else {
-        console.log(downloadObj.names.length);
         const zipFileName = downloadObj.names.length > 1 ? 'Files.zip' : `${downloadObj.names[0]}.zip`;
         res.setHeader('Content-Disposition', `attachment; filename=${zipFileName}`);
         res.setHeader('Content-Type', 'application/zip');
@@ -630,8 +627,8 @@ app.post('/Download', async function (req, res) {
         for (const name of downloadObj.names) {
             if (downloadObj.data.find((item) => item.name === name && !item.isFile)) {
                 const directoryPath = directoryName + downloadObj.path + name + endSlash;
-                await getArchieveFolder(directoryPath)
-                async function getArchieveFolder(directoryPath) {
+                await getAchieveFolder(directoryPath)
+                async function getAchieveFolder(directoryPath) {
                     for await (const item of containerClient.listBlobsByHierarchy('/', { prefix: directoryPath })) {
                         if (item.kind === 'blob') {
                             const blockBlobClient = containerClient.getBlockBlobClient(item.name);
@@ -640,7 +637,7 @@ app.post('/Download', async function (req, res) {
                             archive.append(downloadResponse.readableStreamBody, { name: entryName });
                         }
                         else {
-                            await getArchieveFolder(item.name)
+                            await getAchieveFolder(item.name)
                         }
                     }
                 }
