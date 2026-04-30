@@ -1,6 +1,14 @@
-# filemanager-azure-NodeJS-file-provider
+# Filemanager-azure-NodeJS-file-provider
 
-This repository contains the node JS Azure blob storage file system providers for the Syncfusion File Manager component.
+**Repository Description**  
+This repository contains the **Node.js Azure Blob Storage file system provider** for the Syncfusion **Essential JS 2 File Manager** component.  
+The provider enables the File Manager UI to perform file operations directly against **Azure Blob Storage** using a Node.js backend service.
+
+It exposes server‑side APIs that allow secure interaction with blob containers for reading, uploading, downloading, and managing files and folders.
+
+## Project Overview
+The purpose of this project is to demonstrate how to integrate **Azure Blob Storage** with the Syncfusion JavaScript File Manager using a Node.js backend provider.  
+It shows how client‑side File Manager requests are handled by a Node.js service that performs corresponding file system actions on Azure storage.
 
 ## Key Features
 
@@ -23,51 +31,46 @@ The following actions can be performed with NodeJS file system provider.
 | Rename    | Renames a folder or file. |
 | Search    | Full-text questions perform linguistic searches against text data in full-text indexes by operating on words and phrases. |
 
-## How to configure a web service
+## Prerequisites
+Ensure the following requirements are met before running this project:
+- Node.js (LTS recommended)  
+- npm package manager  
+- Azure Storage account and Blob container  
+- Basic knowledge of JavaScript and Node.js  
+- Syncfusion Essential JS 2 File Manager setup  
 
-Follow the below set of commands to configure the NodeJS file system providers. 
+## Installation
 
-- To install ej2-filemanager-node-filesystem package, use the following command.
-
-```sh
- 
-  npm install @syncfusion/filemanager-azure-NodeJs-file-provider
-
+### Install the Azure Node.js File Provider
+Install the Azure File Manager Node.js provider package using npm:
+```bash
+npm install @syncfusion/filemanager-azure-NodeJs-file-provider
 ```
-
-- To install the depend packages for the file system provider, navigate to @syncfusion/ej2-filemanager-node-filesystem folder within the node_modules and run the below command 
-
-```sh
- 
-  npm install
-
+### Install Provider Dependencies
+Navigate to the provider directory inside node_modules and install required dependencies:
+```bash
+npm install
 ```
-
-### Start the service
-
-To start the service use this command,
-
-```sh
+### Running the Service
+Start the Node.js Azure file system service using:
+```bash
 node filesystem-server.js
 ```
+By default, the service runs at:`http://localhost:3000/`
 
-## File Manager AjaxSettings
+## Usage
 
+### File Manager AjaxSettings
 To access the basic actions like Read, Delete, Copy, Move, Rename, Search, and Get Details of File Manager using NodeJS file system service, just map the following code snippet in the Ajaxsettings property of File Manager.
-
 Here, the `hostUrl` will be your locally hosted port number.
-
 ```
   var hostUrl = http://localhost:3000/;
         ajaxSettings: {
             url: hostUrl,
         }
 ```
-
-## File download AjaxSettings
-
+### File download AjaxSettings
 To perform download operation, initialize the `downloadUrl` property in ajaxSettings of the File Manager component.
-
 ```
   var hostUrl = http://localhost:3000/;
   ajaxSettings: {
@@ -75,11 +78,8 @@ To perform download operation, initialize the `downloadUrl` property in ajaxSett
             downloadUrl: hostUrl + 'Download'
         },
 ```
-
-## File upload AjaxSettings
-
+### File upload AjaxSettings
 To perform upload operation, initialize the `uploadUrl` property in ajaxSettings of the File Manager component.
-
 ```
   var hostUrl = http://localhost:3000/;
   ajaxSettings: {
@@ -87,11 +87,8 @@ To perform upload operation, initialize the `uploadUrl` property in ajaxSettings
             uploadUrl: hostUrl + 'Upload'
         },
 ```
-
-## File image preview AjaxSettings
-
+### File image preview AjaxSettings
 To perform image preview support in the File Manager component, initialize the `getImageUrl` property in ajaxSettings of the File Manager component.
-
 ```
   var hostUrl = http://localhost:3000/;
   ajaxSettings: {
@@ -99,10 +96,27 @@ To perform image preview support in the File Manager component, initialize the `
             getImageUrl: hostUrl + 'GetImage'
         },
 ```
-
 The File Manager will be rendered as follows.
 
 ![File Manager](https://ej2.syncfusion.com/products/images/file-manager/readme.gif)
+
+## Documentation
+- General Syncfusion documentation:
+https://help.syncfusion.com/
+- JavaScript Introduction (Essential JS 2):
+https://ej2.syncfusion.com/javascript/documentation/introduction
+- JavaScript File Manager – Getting Started (ES5):
+https://ej2.syncfusion.com/javascript/documentation/file-manager/es5-getting-started
+
+## Additional Resources
+- Syncfusion JavaScript File Manager overview:
+https://www.syncfusion.com/javascript-ui-controls/js-file-manager
+
+## Troubleshooting
+- Ensure the Node.js service is running and accessible.
+- Verify Azure Blob Storage credentials and container configuration.
+- Check that API endpoints are correctly mapped in ajaxSettings.
+- Restart the service after configuration changes.
 
 ## Support
 
