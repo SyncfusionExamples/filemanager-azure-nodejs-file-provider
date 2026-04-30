@@ -1,4 +1,4 @@
-# filemanager-azure-NodeJS-file-provider
+# Filemanager-azure-NodeJS-file-provider
 
 **Repository Description**  
 This repository contains the **Node.js Azure Blob Storage file system provider** for the Syncfusion **Essential JS 2 File Manager** component.  
